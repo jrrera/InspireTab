@@ -1,0 +1,24 @@
+body {
+  color: white;
+}
+
+.background-overlay {
+  background-image: url('../img/bb7169ea-52ee-44c0-8a9f-ab0cf683979e.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.fadein {
+  -webkit-animation: fadein 0.5s ease 0s forwards;
+}
+
+#main {
+  z-index: 100;
+}

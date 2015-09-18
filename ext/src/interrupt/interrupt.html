@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Gotcha!</title>
+    <base href="/">
+  	<script src="../../lib/angular.min.js"></script>
+    <script src="src/interrupt/interrupt.js"></script>
+  </head>
+  <body ng-app="inspiretab.interrupt">
+    <h1>Gotcha 2!</h1>
+    <it-interrupt-dialogue>
+      <p> You've opened Facebook {{ number }} times today. Is this going to get
+      you closer to your goals? </p>
+      <a href="#" ng-click="continue()">I'd like to continue anyways. Disable these blocks for five minutes.</a>
+    </it-interrupt-dialogue>
+  </body>
+</html>
