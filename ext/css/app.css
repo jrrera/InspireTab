@@ -3,7 +3,8 @@ body {
 }
 
 .background-overlay {
-  background-image: url('../img/bb7169ea-52ee-44c0-8a9f-ab0cf683979e.jpg');
+  /*background-image: url('../img/bb7169ea-52ee-44c0-8a9f-ab0cf683979e.jpg');*/
+  background-image: url('../img/coffeeshop-bg.jpg');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -21,4 +22,35 @@ body {
 
 #main {
   z-index: 100;
+}
+
+#inspire-message {
+  width: 75%;
+  padding: 25px 0;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  text-align: center;
+}
+
+#inspire-message img {
+  display: block;
+  height: 450px;
+  margin: 0 auto;
+  padding-bottom: 20px;
+}
+
+#inspire-message p {
+  font-size: 36px;
+}
+
+#inspire-message a {
+  font-size: 24px;
+  color: pink;
+  text-decoration: none;
+  text-align: center;
+}
+
+#inspire-message a:hover {
+  color: red;
 }

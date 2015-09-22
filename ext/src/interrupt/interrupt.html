@@ -2,17 +2,32 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Gotcha!</title>
+    <title>InspireTab?</title>
+    <link href="../../css/app.css" rel="stylesheet" />
     <base href="/">
   	<script src="../../lib/angular.min.js"></script>
     <script src="src/interrupt/interrupt.js"></script>
   </head>
   <body ng-app="inspiretab.interrupt">
-    <h1>Gotcha 2!</h1>
+    <h1>InspireTab</h1>
+    <div class="background-overlay fadein"></div>
     <it-interrupt-dialogue>
-      <p> You've opened Facebook {{ number }} times today. Is this going to get
-      you closer to your goals? </p>
-      <a href="#" ng-click="continue()">I'd like to continue anyways. Disable these blocks for five minutes.</a>
+      <section id="inspire-message">
+        <p ng-if="$eval(numberOfTimes)">
+          You've opened <strong>{{ currentSite }}</strong> {{ numberOfTimes }} times today.
+          Is this going to get you closer to your goals (like the one below)?
+        </p>
+        <p ng-if="!$eval(numberOfTimes)">
+          It looks like you're trying to access <strong>{{ currentSite }}</strong> right now.
+          Is this going to get you closer to your goals (like the one below)?
+        </p>
+        <div id="inspire-image-container">
+          <img ng-src="{{ inspireImage }}" />
+        </div>
+        <a href="#" ng-click="continue()">
+          I'd like to continue anyways. Disable these blocks for five minutes.
+        </a>
+    </section>
     </it-interrupt-dialogue>
   </body>
 </html>

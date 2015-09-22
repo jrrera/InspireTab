@@ -1,30 +1,57 @@
-// if you checked "fancy-settings" in extensionizr.com, uncomment this lines
-
-// var settings = new Store("settings", {
-//     "sample_setting": "This is how you use Store.js to remember values"
-// });
-
 var disabled = false;
 
+var currentSite;
 
-//example of using a message handler from the inject scripts
-chrome.extension.onMessage.addListener(
-  function(request, sender, sendResponse) {
-  	chrome.pageAction.show(sender.tab.id);
-    sendResponse();
-  });
+var urlPatterns = {
+  facebook: /^https?:\/\/(www)?\.?facebook.com/,
+  twitter: /^https?:\/\/(www)?\.?twitter.com/,
+  groupme: /^https?:\/\/(app)?\.?groupme.com/,
+  reddit: /^https?:\/\/(www)?\.?reddit.com/,
+};
 
 chrome.tabs.onUpdated.addListener(function(tabId, status, changeInfo) {
-  console.log('tab changed!', changeInfo);
+  var counts, site;
+
+  // console.log('tab changed!', status, changeInfo);
+
   if (disabled) { return; }
-  if (changeInfo.url && changeInfo.url.search(/^https?:\/\/(www)?\.?facebook.com/) > -1) {
-    chrome.tabs.update(tabId, {
-      url: 'src/interrupt/interrupt.html?redirect=' + encodeURIComponent(changeInfo.url)
-    });
+
+  for (site in urlPatterns) {
+    if (urlPatterns.hasOwnProperty(site)) {
+      if (changeInfo.url && changeInfo.url.search(urlPatterns[site]) > -1) {
+
+        currentSite = site; // Set as module global.
+
+        // Get access to total number of accesses and send it as query string
+        // along with redirect URL and sitename.
+        counts = store.get('counts') || {};
+        chrome.tabs.update(tabId, {
+          url: 'src/interrupt/interrupt.html?redirect=' + encodeURIComponent(changeInfo.url) +
+               '&site=' + site + '&count=' + (counts[site] || 0)
+        });
+      }
+    }
   }
 });
 
+chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
+  if (msg.allowEntry) {
+    disabled = true;
 
-// listen for a message to flip the flag on and off.
+    var counts = store.get('counts') || {};
 
-// another approach would be to make a DOM overlay so you don't need to do background intercepts.
+    if (counts[currentSite]) {
+      counts[currentSite]++;
+    } else {
+      counts[currentSite] = 1; // init
+    }
+
+    store.set('counts', counts);
+
+    setTimeout(function() {
+      disabled = false;
+    }, msg.allowFor || (1 * 60 * 1000));
+
+    sendResponse({ 'success': true });
+  }
+});
