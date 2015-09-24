@@ -20,7 +20,12 @@ function getCountsKey() {
   var dd = today.getDate();
   var mm = today.getMonth() + 1; // 0 based months.
   var yyyy = today.getFullYear();
-  return yyyy + mm + dd;
+
+  // Standardize to two digits.
+  if (dd<10) { dd='0'+dd; }
+  if (mm<10) { mm='0'+mm; }
+
+  return '' + yyyy + mm + dd; // Coerce to string with ''.
 }
 
 chrome.tabs.onUpdated.addListener(function(tabId, status, changeInfo) {
