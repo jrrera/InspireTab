@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>InspireTab?</title>
+    <title>InspireTab</title>
     <link href="../../css/app.css" rel="stylesheet" />
     <base href="/">
   	<script src="../../lib/angular.min.js"></script>
@@ -25,7 +25,7 @@
           <img ng-src="{{ inspireImage }}" />
         </div>
         <a href="#" ng-click="continue()">
-          I'd like to continue anyways. Disable these blocks for five minutes.
+          I'd like to continue anyways. Disable these blocks for {{ minutesAllowed }} minutes.
         </a>
     </section>
     </it-interrupt-dialogue>
