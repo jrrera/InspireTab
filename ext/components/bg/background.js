@@ -11,6 +11,8 @@ var urlPatterns = {
 
 var disableDurationInMinutes = 5;
 
+var scoreKey = 'dailyScores';
+
 /**
  * Helper function that generates a date string YYYYMMDD as storage key.
  * @return {string} Date string in form of YYYYMMDD.
@@ -26,6 +28,40 @@ function getCountsKey() {
   if (mm<10) { mm='0'+mm; }
 
   return '' + yyyy + mm + dd; // Coerce to string with ''.
+}
+
+/**
+ * Tallies total accesses of forbidden sites and returns a score.
+ *
+ * @param {Object} counts
+ * @return {number} score
+ */
+function getProductivityScore(counts) {
+  var score = 100,
+      highPenaltyThreshold = 5,
+      penaltyMultiplier = 3, // Each subsequent visit over the threshold has a penalty multiplier
+      scoresObj = store.get(scoreKey) || {},
+      todayString = getCountsKey(),
+      siteVisits, highPenaltyCount;
+
+  for (var site in counts) {
+    if (counts.hasOwnProperty(site)) {
+      siteVisits = counts[site];
+      console.log('siteVisits', siteVisits);
+
+      // Add extra penalty of you cross the threshold.
+      if (siteVisits <= highPenaltyThreshold) {
+        score -= siteVisits;
+      } else {
+        highPenaltyCount = siteVisits - highPenaltyThreshold;
+        score -= (highPenaltyThreshold + (highPenaltyCount * penaltyMultiplier));
+      }
+
+    }
+  }
+  scoresObj[todayString] = score;
+  store.set(scoreKey, scoresObj);
+  return score;
 }
 
 chrome.tabs.onUpdated.addListener(function(tabId, status, changeInfo) {
@@ -46,9 +82,11 @@ chrome.tabs.onUpdated.addListener(function(tabId, status, changeInfo) {
         // along with redirect URL and sitename.
         counts = store.get(countsKey) || {};
         chrome.tabs.update(tabId, {
-          url: 'src/interrupt/interrupt.html?redirect=' + encodeURIComponent(changeInfo.url) +
-               '&site=' + site + '&count=' + (counts[site] || 0) +
-               '&minutes=' + disableDurationInMinutes
+          url: 'components/interrupt/interrupt.html?redirect=' + encodeURIComponent(changeInfo.url) +
+               '&site=' + site +
+               '&count=' + (counts[site] || 0) +
+               '&minutes=' + disableDurationInMinutes +
+               '&score=' + getProductivityScore(counts)
         });
       }
     }
@@ -56,11 +94,13 @@ chrome.tabs.onUpdated.addListener(function(tabId, status, changeInfo) {
 });
 
 chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
-  countsKey = getCountsKey();
+  var countsKey = getCountsKey();
   if (msg.allowEntry) {
     disabled = true;
 
     var counts = store.get(countsKey) || {};
+
+    getProductivityScore(counts); // This updates stored score as you access site.
 
     if (counts[currentSite]) {
       counts[currentSite]++;

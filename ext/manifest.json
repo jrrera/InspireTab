@@ -12,7 +12,7 @@
   },
   "default_locale": "en",
   "background": {
-    "page": "src/bg/background.html",
+    "page": "components/bg/background.html",
     "persistent": true
   },
   "permissions": [

@@ -6,13 +6,14 @@
     <link href="../../css/app.css" rel="stylesheet" />
     <base href="/">
   	<script src="../../lib/angular.min.js"></script>
-    <script src="src/interrupt/interrupt.js"></script>
+    <script src="components/interrupt/interrupt.js"></script>
   </head>
   <body ng-app="inspiretab.interrupt">
     <h1>InspireTab</h1>
     <div class="background-overlay fadein"></div>
     <it-interrupt-dialogue>
       <section id="inspire-message">
+        <p>Today's Score: {{ productivityScore }} </p>
         <p ng-if="$eval(numberOfTimes)">
           You've opened <strong>{{ currentSite }}</strong> {{ numberOfTimes }} times today.
           Is this going to get you closer to your goals (like the one below)?
