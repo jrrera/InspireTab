@@ -1,3 +1,5 @@
+var angular = require('angular');
+
 angular.module('inspiretab.interrupt', [])
 	.config(function($locationProvider, $compileProvider) {
 		// Support for query string given by bg script.
@@ -16,16 +18,16 @@ angular.module('inspiretab.interrupt', [])
 
 				var imgList = [
 					'http://www.livingforimprovement.com/wp-content/uploads/2012/06/gsummit-action-shot.jpg',
-					'chrome-extension://igmjihpajekbbigheciochonooocbljb/ext/img/jon-featured.png',
-					'chrome-extension://igmjihpajekbbigheciochonooocbljb/ext/img/jon-gabe-chat.png',
-					'chrome-extension://igmjihpajekbbigheciochonooocbljb/ext/img/jon-gsummit-round2.jpg',
-					'chrome-extension://igmjihpajekbbigheciochonooocbljb/ext/img/google-dayz.jpg',
-					'chrome-extension://igmjihpajekbbigheciochonooocbljb/ext/img/hustling-2012.jpg',
-					'chrome-extension://igmjihpajekbbigheciochonooocbljb/ext/img/featured-speaker.jpg',
-					'chrome-extension://igmjihpajekbbigheciochonooocbljb/ext/img/newyork-skyline.jpg',
-					'chrome-extension://igmjihpajekbbigheciochonooocbljb/ext/img/intersections.jpg',
-					'chrome-extension://igmjihpajekbbigheciochonooocbljb/ext/img/coffeeshop-bg.jpg',
-					'chrome-extension://igmjihpajekbbigheciochonooocbljb/ext/img/coffee-shop-paris-cozy-interior-cafe-lomi.jpg',
+					'chrome-extension://mgpbncibdliefhheocckldgnjbemhbbm/ext/img/jon-featured.png',
+					'chrome-extension://mgpbncibdliefhheocckldgnjbemhbbm/ext/img/jon-gabe-chat.png',
+					'chrome-extension://mgpbncibdliefhheocckldgnjbemhbbm/ext/img/jon-gsummit-round2.jpg',
+					'chrome-extension://mgpbncibdliefhheocckldgnjbemhbbm/ext/img/google-dayz.jpg',
+					'chrome-extension://mgpbncibdliefhheocckldgnjbemhbbm/ext/img/hustling-2012.jpg',
+					'chrome-extension://mgpbncibdliefhheocckldgnjbemhbbm/ext/img/featured-speaker.jpg',
+					'chrome-extension://mgpbncibdliefhheocckldgnjbemhbbm/ext/img/newyork-skyline.jpg',
+					'chrome-extension://mgpbncibdliefhheocckldgnjbemhbbm/ext/img/intersections.jpg',
+					'chrome-extension://mgpbncibdliefhheocckldgnjbemhbbm/ext/img/coffeeshop-bg.jpg',
+					'chrome-extension://mgpbncibdliefhheocckldgnjbemhbbm/ext/img/coffee-shop-paris-cozy-interior-cafe-lomi.jpg',
 				];
 
 				var randomImage =  imgList[ Math.floor(Math.random() * imgList.length) ];

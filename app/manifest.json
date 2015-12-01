@@ -1,0 +1,22 @@
+{
+  "name": "InspireTab",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "description": "Useful, customizable inspiration and productivity.",
+  "homepage_url": "http://jonathanguerrera.com",
+  "icons": {
+    "16": "ext/icons/icon16.png",
+    "48": "ext/icons/icon48.png",
+    "128": "ext/icons/icon128.png"
+  },
+  "background": {
+    "page": "ext/components/bg/background.html",
+    "persistent": true
+  },
+  "permissions": [
+    "management",
+    "notifications",
+    "tabs"
+  ]
+}

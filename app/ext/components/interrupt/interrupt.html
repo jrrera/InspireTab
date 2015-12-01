@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>InspireTab</title>
+    <link href="/ext/css/app.css" rel="stylesheet" />
+    <base href="/">
+  	<!-- <script src="ext/lib/angular.min.js"></script> -->
+    <script src="dist/interrupt.bundle.js"></script>
+  </head>
+  <body ng-app="inspiretab.interrupt">
+    <h1>InspireTab</h1>
+    <div id="background-overlay"></div>
+    <it-interrupt-dialogue>
+      <section id="inspire-message">
+        <h1>{{ productivityScore }} / 100</h1>
+        <p ng-if="$eval(numberOfTimes)">
+          You've opened <strong>{{ currentSite }}</strong> {{ numberOfTimes }} times today.
+          Is this going to get you closer to your goals?
+        </p>
+        <p ng-if="!$eval(numberOfTimes)">
+          Is <strong>{{ currentSite }}</strong> going to get you closer to your goals?
+        </p>
+        <a href="#" ng-click="continue()">
+          Yes, it will. (Disable blocks for {{ minutesAllowed }} minutes.)
+        </a>
+    </section>
+    </it-interrupt-dialogue>
+  </body>
+</html>

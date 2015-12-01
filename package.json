@@ -1,0 +1,29 @@
+{
+  "name": "Inspiretab",
+  "version": "0.0.1",
+  "description": "InspireTab is a Chrome extension that I (Jon) use to block certain websites during the day.",
+  "main": "background.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jrrera/InspireTab.git"
+  },
+  "author": "Jon Guerrera",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jrrera/InspireTab/issues"
+  },
+  "homepage": "https://github.com/jrrera/InspireTab",
+  "devDependencies": {
+    "babel-core": "^6.2.1",
+    "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.1.18",
+    "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.14.0"
+  },
+  "dependencies": {
+    "angular": "^1.4.8"
+  }
+}
