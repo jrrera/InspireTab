@@ -9,6 +9,4 @@ At the moment it can:
  * Allow you a free pass into that website if it's actually productive, or you're on break.
  * Supports custom images to display in the background -- this adds additional inspiration to be productive.
 
-At the moment, you cannot customize the images and websites from the UI. It's hardcoded.
-
-Customization UI coming soon!
+At the moment, you cannot customize the images and websites from the UI. It's hardcoded. Customization coming soon!
