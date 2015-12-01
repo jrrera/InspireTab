@@ -24,9 +24,20 @@ angular.module('inspiretab.interrupt', [])
 					'chrome-extension://igmjihpajekbbigheciochonooocbljb/img/featured-speaker.jpg',
 					'chrome-extension://igmjihpajekbbigheciochonooocbljb/img/newyork-skyline.jpg',
 					'chrome-extension://igmjihpajekbbigheciochonooocbljb/img/intersections.jpg',
+					'chrome-extension://igmjihpajekbbigheciochonooocbljb/img/coffeeshop-bg.jpg',
+					'chrome-extension://igmjihpajekbbigheciochonooocbljb/img/coffee-shop-paris-cozy-interior-cafe-lomi.jpg',
 				];
 
 				var randomImage =  imgList[ Math.floor(Math.random() * imgList.length) ];
+
+				// NB: For some reason, adding the fade-in class without pushing this
+				// farther up the stack with a setTimeout prevents the animation from
+				// happening. May have to do with postLink timing.
+				setTimeout(function(){
+					angular.element(document.getElementById('background-overlay'))
+							.css('background-image', 'url(' + randomImage + ')')
+							.addClass('fade-in');
+				}, 0);
 
 				// View props
 				scope.numberOfTimes = queryData.count;
@@ -41,12 +52,12 @@ angular.module('inspiretab.interrupt', [])
 					elem.append(clone);
 				});
 
+
 				scope.continue = function() {
 					chrome.runtime.sendMessage({ allowEntry: true }, function() {
 						$window.location.href = queryData.redirect;
 					});
 				};
-
 
 			}
 		};

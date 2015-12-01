@@ -10,23 +10,19 @@
   </head>
   <body ng-app="inspiretab.interrupt">
     <h1>InspireTab</h1>
-    <div class="background-overlay fadein"></div>
+    <div id="background-overlay"></div>
     <it-interrupt-dialogue>
       <section id="inspire-message">
-        <p>Today's Score: {{ productivityScore }} </p>
+        <h1>{{ productivityScore }} / 100</h1>
         <p ng-if="$eval(numberOfTimes)">
           You've opened <strong>{{ currentSite }}</strong> {{ numberOfTimes }} times today.
-          Is this going to get you closer to your goals (like the one below)?
+          Is this going to get you closer to your goals?
         </p>
         <p ng-if="!$eval(numberOfTimes)">
-          It looks like you're trying to access <strong>{{ currentSite }}</strong> right now.
-          Is this going to get you closer to your goals (like the one below)?
+          Is <strong>{{ currentSite }}</strong> going to get you closer to your goals?
         </p>
-        <div id="inspire-image-container">
-          <img ng-src="{{ inspireImage }}" />
-        </div>
         <a href="#" ng-click="continue()">
-          I'd like to continue anyways. Disable these blocks for {{ minutesAllowed }} minutes.
+          Yes, it will. (Disable blocks for {{ minutesAllowed }} minutes.)
         </a>
     </section>
     </it-interrupt-dialogue>

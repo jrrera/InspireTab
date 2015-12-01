@@ -9,7 +9,7 @@ var urlPatterns = {
   reddit: /^https?:\/\/(www)?\.?reddit.com/,
 };
 
-var disableDurationInMinutes = 5;
+var disableDurationInMinutes = 10;
 
 var scoreKey = 'dailyScores';
 
