@@ -7,6 +7,7 @@ module.exports = {
     bg: "./app/ext/components/bg/background",
     interrupt: "./app/ext/components/interrupt/interrupt"
   },
+
   // Turn on sourcemaps
   devtool: 'source-map',
 
@@ -27,7 +28,7 @@ module.exports = {
     ]
   },
   output: {
-    path: path.join(__dirname, "dist"),
+    path: path.join(__dirname, "app/dist"),
     filename: "[name].bundle.js"
   }
 };

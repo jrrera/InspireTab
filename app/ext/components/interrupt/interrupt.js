@@ -6,8 +6,11 @@ angular.module('inspiretab.interrupt', [])
 		$locationProvider.html5Mode(true).hashPrefix('!');
 
 		// Support chrome extensions in ng-src and ng-href for angular.
-		$compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|chrome-extension):/);
-		$compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|local|data|chrome-extension):/);
+		$compileProvider.aHrefSanitizationWhitelist(
+				/^\s*(https?|ftp|mailto|chrome-extension):/);
+
+		$compileProvider.imgSrcSanitizationWhitelist(
+				/^\s*(https?|local|data|chrome-extension):/);
 	})
 	.directive('itInterruptDialogue', function($location, $window, $http) {
 		return {
@@ -15,6 +18,7 @@ angular.module('inspiretab.interrupt', [])
 			transclude: true,
 			link: function(scope, elem, attrs, ctrl, transclude) {
 				var queryData = $location.search();
+				var randomImage;
 
 				var imgList = [
 					'http://www.livingforimprovement.com/wp-content/uploads/2012/06/gsummit-action-shot.jpg',
@@ -30,16 +34,19 @@ angular.module('inspiretab.interrupt', [])
 					'chrome-extension://mgpbncibdliefhheocckldgnjbemhbbm/ext/img/coffee-shop-paris-cozy-interior-cafe-lomi.jpg',
 				];
 
-				var randomImage =  imgList[ Math.floor(Math.random() * imgList.length) ];
+				setInterval(function() {
+					randomImage = imgList[ Math.floor(Math.random() * imgList.length) ];
 
-				// NB: For some reason, adding the fade-in class without pushing this
-				// farther up the stack with a setTimeout prevents the animation from
-				// happening. May have to do with postLink timing.
-				setTimeout(function(){
-					angular.element(document.getElementById('background-overlay'))
-							.css('background-image', 'url(' + randomImage + ')')
-							.addClass('fade-in');
-				}, 0);
+					// NB: For some reason, adding the fade-in class without pushing this
+					// farther up the stack with a setTimeout prevents the animation from
+					// happening. May have to do with postLink timing.
+					setTimeout(function(){
+						angular.element(document.getElementById('background-overlay'))
+								.css('background-image', 'url(' + randomImage + ')')
+								.addClass('fade-in');
+					}, 0);
+				}, 5000);
+
 
 				// View props
 				scope.numberOfTimes = queryData.count;
