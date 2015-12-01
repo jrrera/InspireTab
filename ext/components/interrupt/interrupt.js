@@ -16,16 +16,16 @@ angular.module('inspiretab.interrupt', [])
 
 				var imgList = [
 					'http://www.livingforimprovement.com/wp-content/uploads/2012/06/gsummit-action-shot.jpg',
-					'chrome-extension://igmjihpajekbbigheciochonooocbljb/img/jon-featured.png',
-					'chrome-extension://igmjihpajekbbigheciochonooocbljb/img/jon-gabe-chat.png',
-					'chrome-extension://igmjihpajekbbigheciochonooocbljb/img/jon-gsummit-round2.jpg',
-					'chrome-extension://igmjihpajekbbigheciochonooocbljb/img/google-dayz.jpg',
-					'chrome-extension://igmjihpajekbbigheciochonooocbljb/img/hustling-2012.jpg',
-					'chrome-extension://igmjihpajekbbigheciochonooocbljb/img/featured-speaker.jpg',
-					'chrome-extension://igmjihpajekbbigheciochonooocbljb/img/newyork-skyline.jpg',
-					'chrome-extension://igmjihpajekbbigheciochonooocbljb/img/intersections.jpg',
-					'chrome-extension://igmjihpajekbbigheciochonooocbljb/img/coffeeshop-bg.jpg',
-					'chrome-extension://igmjihpajekbbigheciochonooocbljb/img/coffee-shop-paris-cozy-interior-cafe-lomi.jpg',
+					'chrome-extension://igmjihpajekbbigheciochonooocbljb/ext/img/jon-featured.png',
+					'chrome-extension://igmjihpajekbbigheciochonooocbljb/ext/img/jon-gabe-chat.png',
+					'chrome-extension://igmjihpajekbbigheciochonooocbljb/ext/img/jon-gsummit-round2.jpg',
+					'chrome-extension://igmjihpajekbbigheciochonooocbljb/ext/img/google-dayz.jpg',
+					'chrome-extension://igmjihpajekbbigheciochonooocbljb/ext/img/hustling-2012.jpg',
+					'chrome-extension://igmjihpajekbbigheciochonooocbljb/ext/img/featured-speaker.jpg',
+					'chrome-extension://igmjihpajekbbigheciochonooocbljb/ext/img/newyork-skyline.jpg',
+					'chrome-extension://igmjihpajekbbigheciochonooocbljb/ext/img/intersections.jpg',
+					'chrome-extension://igmjihpajekbbigheciochonooocbljb/ext/img/coffeeshop-bg.jpg',
+					'chrome-extension://igmjihpajekbbigheciochonooocbljb/ext/img/coffee-shop-paris-cozy-interior-cafe-lomi.jpg',
 				];
 
 				var randomImage =  imgList[ Math.floor(Math.random() * imgList.length) ];

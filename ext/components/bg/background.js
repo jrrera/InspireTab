@@ -82,7 +82,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, status, changeInfo) {
         // along with redirect URL and sitename.
         counts = store.get(countsKey) || {};
         chrome.tabs.update(tabId, {
-          url: 'components/interrupt/interrupt.html?redirect=' + encodeURIComponent(changeInfo.url) +
+          url: 'ext/components/interrupt/interrupt.html?redirect=' + encodeURIComponent(changeInfo.url) +
                '&site=' + site +
                '&count=' + (counts[site] || 0) +
                '&minutes=' + disableDurationInMinutes +
