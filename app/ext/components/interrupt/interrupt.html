@@ -13,14 +13,19 @@
     <div id="background-overlay"></div>
     <it-interrupt-dialogue>
       <section id="inspire-message">
-        <h1>{{ productivityScore }} / 100</h1>
+        <h1>Productivity <br />{{ productivityScore }} / 100</h1>
+        <!-- Remind you of how many visits you've had already today -->
         <p ng-if="$eval(numberOfTimes)">
           You've opened <strong>{{ currentSite }}</strong> {{ numberOfTimes }} times today.
           Is this going to get you closer to your goals?
         </p>
+
+        <!-- First time today? Show a more light-weight message -->
         <p ng-if="!$eval(numberOfTimes)">
           Is <strong>{{ currentSite }}</strong> going to get you closer to your goals?
         </p>
+
+        <!-- Call to action for valid uses -->
         <a href="#" ng-click="continue()">
           Yes, it will. (Disable blocks for {{ minutesAllowed }} minutes.)
         </a>

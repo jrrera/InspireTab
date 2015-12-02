@@ -7,6 +7,8 @@ var urlPatterns = {
   twitter: /^https?:\/\/(www)?\.?twitter.com/,
   groupme: /^https?:\/\/(app)?\.?groupme.com/,
   reddit: /^https?:\/\/(www)?\.?reddit.com/,
+  mail: /^https?:\/\/mail\.google.com/,
+  inbox: /^https?:\/\/inbox\.google.com/,
 };
 
 var disableDurationInMinutes = 10;
