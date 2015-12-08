@@ -1,3 +1,5 @@
+/* jshint esnext: true */
+
 var disabled = false;
 
 var currentSite;
@@ -11,9 +13,11 @@ var urlPatterns = {
   inbox: /^https?:\/\/inbox\.google.com/,
 };
 
-var disableDurationInMinutes = 10;
+const DISABLE_DURATION_MINUTES = 10;
 
-var scoreKey = 'dailyScores';
+const SCORE_KEY = 'dailyScores';
+
+const CUT_OFF_HOUR = 18; // Beyond this hour of the day, no more blocker.
 
 /**
  * Helper function that generates a date string YYYYMMDD as storage key.
@@ -42,7 +46,7 @@ function getProductivityScore(counts) {
   var score = 100,
       highPenaltyThreshold = 5,
       penaltyMultiplier = 3, // Each subsequent visit over the threshold has a penalty multiplier
-      scoresObj = store.get(scoreKey) || {},
+      scoresObj = store.get(SCORE_KEY) || {},
       todayString = getCountsKey(),
       siteVisits, highPenaltyCount;
 
@@ -62,17 +66,18 @@ function getProductivityScore(counts) {
     }
   }
   scoresObj[todayString] = score;
-  store.set(scoreKey, scoresObj);
+  store.set(SCORE_KEY, scoresObj);
   return score;
 }
 
 chrome.tabs.onUpdated.addListener(function(tabId, status, changeInfo) {
   var counts, site,
-      countsKey = getCountsKey();
+      countsKey = getCountsKey(),
+      currentDate = new Date();
 
   // console.log('tab changed!', status, changeInfo);
 
-  if (disabled) { return; }
+  if (disabled || currentDate.getHours() >= CUT_OFF_HOUR) { return; }
 
   for (site in urlPatterns) {
     if (urlPatterns.hasOwnProperty(site)) {
@@ -87,7 +92,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, status, changeInfo) {
           url: 'ext/components/interrupt/interrupt.html?redirect=' + encodeURIComponent(changeInfo.url) +
                '&site=' + site +
                '&count=' + (counts[site] || 0) +
-               '&minutes=' + disableDurationInMinutes +
+               '&minutes=' + DISABLE_DURATION_MINUTES +
                '&score=' + getProductivityScore(counts)
         });
       }
@@ -114,7 +119,7 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
 
     setTimeout(function() {
       disabled = false;
-    }, msg.allowFor || (disableDurationInMinutes * 60 * 1000));
+    }, msg.allowFor || (DISABLE_DURATION_MINUTES * 60 * 1000));
 
     sendResponse({ 'success': true });
   }

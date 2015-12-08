@@ -1,3 +1,5 @@
+/* jshint esnext: true */
+
 var angular = require('angular');
 
 angular.module('inspiretab.interrupt', [])
@@ -50,7 +52,7 @@ angular.module('inspiretab.interrupt', [])
 					setTimeout(function() {
 						angular.element(document.getElementById('background-overlay'))
 								.removeClass('fade-in');
-					}, FADE_OUT_TIMER)
+					}, FADE_OUT_TIMER);
 				};
 
 				// Set background image and set up an interval.
