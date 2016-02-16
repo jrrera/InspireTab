@@ -61,7 +61,8 @@ it-interrupt-dialogue {
   font-size: 36px;
 }
 
-#inspire-message a {
+#inspire-message a,
+#inspire-message .wait {
   font-size: 24px;
   color: pink;
   text-decoration: none;

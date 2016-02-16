@@ -26,8 +26,11 @@
         </p>
 
         <!-- Call to action for valid uses -->
-        <a href="#" ng-click="continue()">
-          Yes, it will. (Disable blocks for {{ minutesAllowed }} minutes.)
+        <p class="wait" ng-if="countDownInSeconds > 0">
+          You can continue in {{ countDownInSeconds }} seconds...
+        </p>
+        <a href="#" ng-if="countDownInSeconds <= 0" ng-click="continue()">
+          Disable blocks for {{ minutesAllowed }} minutes.
         </a>
     </section>
     </it-interrupt-dialogue>

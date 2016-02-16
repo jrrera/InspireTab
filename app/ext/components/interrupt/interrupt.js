@@ -14,7 +14,7 @@ angular.module('inspiretab.interrupt', [])
 		$compileProvider.imgSrcSanitizationWhitelist(
 				/^\s*(https?|local|data|chrome-extension):/);
 	})
-	.directive('itInterruptDialogue', function($location, $window, $http) {
+	.directive('itInterruptDialogue', function($location, $window, $http, $interval) {
 		return {
 			restrict: 'EA',
 			transclude: true,
@@ -22,6 +22,7 @@ angular.module('inspiretab.interrupt', [])
 				var queryData = $location.search();
 				const FADE_OUT_TIMER = 8500;
 				const IMAGE_SWITCH_TIMER = 10000;
+				const SECONDS_TO_WAIT_PER_ACCESS = 5;
 
 				var imgList = [
 					'http://www.livingforimprovement.com/wp-content/uploads/2012/06/gsummit-action-shot.jpg',
@@ -65,12 +66,19 @@ angular.module('inspiretab.interrupt', [])
 				scope.currentSite = queryData.site;
 				scope.minutesAllowed = queryData.minutes;
 				scope.productivityScore = queryData.score;
+				scope.countDownInSeconds = queryData.count * SECONDS_TO_WAIT_PER_ACCESS;
 
 				// Manual transclusion, as its more readable to keep DOM out of a
 				// separate template.
 				transclude(scope, function(clone, scope) {
 					elem.append(clone);
 				});
+
+				// Set up countdown timer for how the long the user has to wait before
+				// they can access their desired website.
+				$interval(function() {
+					scope.countDownInSeconds--;
+				}, 1000, scope.countDownInSeconds);
 
 
 				scope.continue = function() {
