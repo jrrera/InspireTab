@@ -3,17 +3,18 @@
 <head>
 	<title>InspireTab</title>
 	<base href="/">
-	<link href="../../css/app.css" rel="stylesheet" />
-	<script src="../../lib/angular.min.js"></script>
-	<script src="override.js"></script>
+	<link href="/ext/css/app.css" rel="stylesheet" />
+	<script src="/ext/lib/angular.min.js"></script>
+	<script src="/ext/components/override/override.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body ng-app="inspiretab">
 
-<div class="background-overlay fadein"></div>
+<div id="background-overlay" class="fadein"></div>
 <section id="main">
 	<h1>InspireTab</h1>
 	<it-quotes></it-quotes>
-	<it-momentum></it-momentum>
+	<!-- <it-momentum></it-momentum> -->
 </section>
 
 </body>

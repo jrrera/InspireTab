@@ -28,6 +28,10 @@ body {
   opacity: 1;
 }
 
+.text-left {
+  text-align: left !important;
+}
+
 #main {
   z-index: 100;
 }
@@ -39,7 +43,7 @@ it-interrupt-dialogue {
 #inspire-message {
   width: 75%;
   height: 80%;
-  padding: 25px 0;
+  padding: 25px;
   margin: 0 auto;
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 10px;
